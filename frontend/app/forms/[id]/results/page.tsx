@@ -61,28 +61,40 @@ export default function ResultsPage() {
   const questionsById = Object.fromEntries(form.questions.map((q) => [q.id, q]));
 
   return (
-    <div className="min-h-screen tf-canvas-color">
-      <header className="h-[60px] bg-paper px-5 flex items-center gap-3">
-        <Link href="/forms" className="flex items-center gap-2 text-slate2 hover:text-ink text-[15px]" data-testid="back-to-dashboard">
-          <TypeformLogo size={18} className="text-ink" /> <span className="hidden sm:inline">Forms</span>
-        </Link>
-        <span className="text-mute">/</span>
-        <div className="flex-1 min-w-0">
-          <h1 className="text-[15px] font-medium truncate">{form.title}</h1>
-        </div>
-        <Link href={`/forms/${form.id}/edit`} className="tf-btn-ghost text-sm" data-testid="edit-link">
-          Edit form
-        </Link>
-        <a
-          href={api.csvUrl(form.id)}
-          className="tf-btn-accent text-sm"
-          data-testid="export-csv-btn"
-          download
-        >
-          <Download size={14} /> Export CSV
-        </a>
-      </header>
+  <div className="min-h-screen tf-canvas-color">
+    <header className="h-[60px] bg-paper px-5 flex items-center gap-3">
+      <Link
+        href="/forms"
+        className="flex items-center gap-2 text-slate2 hover:text-ink text-[15px]"
+        data-testid="back-to-dashboard"
+      >
+        <TypeformLogo size={18} className="text-ink" />
+        <span className="hidden sm:inline">Forms</span>
+      </Link>
 
+      <span className="text-mute">/</span>
+
+      <div className="flex-1 min-w-0">
+        <h1 className="text-[15px] font-medium truncate">{form.title}</h1>
+      </div>
+
+      <Link
+        href={`/forms/${form.id}/edit`}
+        className="tf-btn-ghost text-sm"
+        data-testid="edit-link"
+      >
+        Edit form
+      </Link>
+
+      <a
+        href={api.csvUrl(form.id)}
+        className="tf-btn-accent text-sm"
+        data-testid="export-csv-btn"
+        download
+      >
+        <Download size={14} /> Export CSV
+      </a>
+    </header>
       <div className="max-w-6xl mx-auto px-6 py-10 relative">
         <div className="ambient-purple w-[500px] h-[220px] -top-10 right-20" />
 
