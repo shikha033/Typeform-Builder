@@ -126,8 +126,7 @@ export default function ResultsPage() {
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <div className="text-[10px] uppercase tracking-wider text-slate2 font-semibold">
-                      {QUESTION_TYPE_LABEL[qs.question_type as any] || qs.question_type}
-                    </div>
+                    {QUESTION_TYPE_LABEL[qs.question_type as keyof typeof QUESTION_TYPE_LABEL] || qs.question_type}
                     <h3 className="font-display text-lg">{qs.question_title || "Untitled"}</h3>
                   </div>
                   <span className="text-xs text-slate2">{qs.response_count} responses</span>
