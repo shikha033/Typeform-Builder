@@ -20,7 +20,7 @@ export function TypeformLogo({
           className="font-medium tracking-tight"
           style={{ fontSize: size * 1.15, lineHeight: 1, letterSpacing: "-0.03em" }}
         >
-          Typeform
+          Typeform Builder
         </span>
       )}
     </span>
