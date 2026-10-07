@@ -53,8 +53,8 @@ export default function ResultsPage() {
   if (!form || !stats) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse text-slate2">Loading results…<div>
-      <div>
+        <div className="animate-pulse text-slate2">Loading results…</div>
+      </div>
     );
   }
 
@@ -69,14 +69,14 @@ export default function ResultsPage() {
         data-testid="back-to-dashboard"
       >
         <TypeformLogo size={18} className="text-ink" />
-        <span className="hidden sm:inline">Forms<span>
-      <Link>
+        <span className="hidden sm:inline">Forms</span>
+      </Link>
 
-      <span className="text-mute">/<span>
+      <span className="text-mute">/</span>
 
       <div className="flex-1 min-w-0">
-        <h1 className="text-[15px] font-medium truncate">{form.title}<h1>
-      <div>
+        <h1 className="text-[15px] font-medium truncate">{form.title}</h1>
+      </div>
 
       <Link
         href={`/forms/${form.id}/edit`}
@@ -84,7 +84,7 @@ export default function ResultsPage() {
         data-testid="edit-link"
       >
         Edit form
-      <Link>
+      </Link>
 
       <a
         href={api.csvUrl(form.id)}
@@ -94,16 +94,16 @@ export default function ResultsPage() {
       >
         <Download size={14} /> Export CSV
       <a>
-    <header>
+    </header>
       <div className="max-w-6xl mx-auto px-6 py-10 relative">
         <div className="ambient-purple w-[500px] h-[220px] -top-10 right-20" />
 
         <div className="mb-8 relative">
-          <p className="text-xs uppercase tracking-[0.1em] text-purple2 font-semibold mb-2">Results<p>
+          <p className="text-xs uppercase tracking-[0.1em] text-purple2 font-semibold mb-2">Results</p>
           <h1 className="text-[2rem] md:text-[2.4rem] font-light leading-tight">
             {form.title}
-          <h1>
-        <div>
+          </h1>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <StatCard icon={<Users size={18} />} label="Total responses" value={stats.total_responses} testid="stat-total" />
@@ -114,16 +114,16 @@ export default function ResultsPage() {
             value={form.is_published ? "Live" : "Draft"}
             testid="stat-status"
           />
-        <div>
+        </div>
 
         <div className="flex gap-1 border-b border-line mb-6">
           <TabBtn active={tab === "summary"} onClick={() => setTab("summary")} testid="tab-summary">
             Summary
-          <TabBtn>
+          </TabBtn>
           <TabBtn active={tab === "individual"} onClick={() => setTab("individual")} testid="tab-individual">
             Responses ({list.length})
-          <TabBtn>
-        <div>
+          </TabBtn>
+        </div>
 
         {tab === "summary" ? (
           <div className="space-y-5" data-testid="summary-panel">
@@ -139,31 +139,31 @@ export default function ResultsPage() {
                   <div>
                     <div className="text-[10px] uppercase tracking-wider text-slate2 font-semibold">
                     {QUESTION_TYPE_LABEL[qs.question_type as keyof typeof QUESTION_TYPE_LABEL] || qs.question_type}
-                    <h3 className="font-display text-lg">{qs.question_title || "Untitled"}<h3>
-                  <div>
-                  <span className="text-xs text-slate2">{qs.response_count} responses<span>
-                <div>
+                    <h3 className="font-display text-lg">{qs.question_title || "Untitled"}</h3>
+                  </div>
+                  <span className="text-xs text-slate2">{qs.response_count} responses</span>
+                </div>
 
                 <StatRenderer qs={qs} />
-              <motion.div>
+              </motion.div>
             ))}
-          <div>
+          </div>
         ) : (
           <div className="tf-card overflow-hidden" data-testid="individual-panel">
             {list.length === 0 ? (
               <div className="p-10 text-center text-slate2">
                 No responses yet. Share your form to collect responses.
-              <div>
+              </div>
             ) : (
               <table className="w-full">
                 <thead>
                   <tr className="bg-app-bg text-xs uppercase tracking-wider text-slate2">
-                    <th className="text-left px-4 py-3">#<th>
-                    <th className="text-left px-4 py-3">Submitted<th>
-                    <th className="text-left px-4 py-3">Answers<th>
-                    <th><th>
-                  <tr>
-                <thead>
+                    <th className="text-left px-4 py-3">#</th>
+                    <th className="text-left px-4 py-3">Submitted</th>
+                    <th className="text-left px-4 py-3">Answers</th>
+                    <th></th>
+                  </tr>
+                </thead>
                 <tbody>
                   {list.map((r, i) => (
                     <tr
@@ -172,18 +172,18 @@ export default function ResultsPage() {
                       onClick={() => openResponse(r.id)}
                       data-testid={`response-row-${i}`}
                     >
-                      <td className="px-4 py-3 text-sm text-slate2">#{list.length - i}<td>
-                      <td className="px-4 py-3 text-sm">{formatDate(r.submitted_at)}<td>
-                      <td className="px-4 py-3 text-sm">{r.answer_count} answers<td>
-                      <td className="px-4 py-3 text-sm text-right text-slate2">View →<td>
-                    <tr>
+                      <td className="px-4 py-3 text-sm text-slate2">#{list.length - i}</td>
+                      <td className="px-4 py-3 text-sm">{formatDate(r.submitted_at)}</td>
+                      <td className="px-4 py-3 text-sm">{r.answer_count} answers</td>
+                      <td className="px-4 py-3 text-sm text-right text-slate2">View →</td>
+                    </tr>
                   ))}
-                <tbody>
-              <table>
+                </tbody>
+              </table>
             )}
-          <div>
+          </div>
         )}
-      <div>
+      </div>
 
       {selectedResp && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -195,9 +195,9 @@ export default function ResultsPage() {
             data-testid="response-detail-modal"
           >
             <div className="mb-5">
-              <div className="text-xs text-slate2 mb-1">Response · {formatDate(selectedResp.submitted_at)}<div>
-              <h3 className="font-display text-2xl">Individual response<h3>
-            <div>
+              <div className="text-xs text-slate2 mb-1">Response · {formatDate(selectedResp.submitted_at)}</div>
+              <h3 className="font-display text-2xl">Individual response</h3>
+            </div>
             <div className="space-y-5">
               {form.questions.map((q) => {
                 const a = selectedResp.answers.find((x) => x.question_id === q.id);
@@ -215,30 +215,30 @@ export default function ResultsPage() {
                 }
                 return (
                   <div key={q.id} className="border-l-2 border-line pl-4">
-                    <div className="text-xs text-slate2 uppercase tracking-wider">{q.title || "Untitled"}<div>
-                    <div className="text-base mt-1">{display}<div>
-                  <div>
+                    <div className="text-xs text-slate2 uppercase tracking-wider">{q.title || "Untitled"}</div>
+                    <div className="text-base mt-1">{display}</div>
+                  </div>
                 );
               })}
-            <div>
+            </div>
             <div className="flex justify-end mt-6">
               <button className="tf-btn-ghost" onClick={() => setSelectedResp(null)} data-testid="close-response">
                 Close
-              <button>
-            <div>
-          <motion.div>
-        <div>
+              </button>
+            </div>
+          </motion.div>
+        </div>
       )}
-    <div>
+    </div>
   );
 }
 
 function StatCard({ icon, label, value, testid }: { icon: React.ReactNode; label: string; value: any; testid?: string }) {
   return (
     <div className="tf-card p-5" data-testid={testid}>
-      <div className="flex items-center gap-2 text-slate2 text-xs mb-2 uppercase tracking-[0.08em] font-semibold">{icon}{label}<div>
-      <div className="font-display text-[2.25rem] leading-none">{value}<div>
-    <div>
+      <div className="flex items-center gap-2 text-slate2 text-xs mb-2 uppercase tracking-[0.08em] font-semibold">{icon}{label}</div>
+      <div className="font-display text-[2.25rem] leading-none">{value}</div>
+    </div>
   );
 }
 
@@ -253,7 +253,7 @@ function TabBtn({ children, active, onClick, testid }: { children: React.ReactNo
       )}
     >
       {children}
-    <button>
+    </button>
   );
 }
 
@@ -265,19 +265,19 @@ function StatRenderer({ qs }: { qs: any }) {
         {Object.entries<number>(qs.option_counts).map(([label, count]) => (
           <div key={label}>
             <div className="flex justify-between text-sm mb-1">
-              <span>{label}<span>
-              <span className="text-slate2">{count}<span>
-            <div>
+              <span>{label}</span>
+              <span className="text-slate2">{count}</span>
+            </div>
             <div className="h-2 bg-line rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${(count / max) * 100}%` }}
                 className="h-full bg-ink"
               />
-            <div>
-          <div>
+            </div>
+          </div>
         ))}
-      <div>
+      </div>
     );
   }
   if (qs.yes_count != null || qs.no_count != null) {
@@ -285,23 +285,23 @@ function StatRenderer({ qs }: { qs: any }) {
     return (
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-app-bg rounded-lg p-4">
-          <div className="text-xs text-slate2">Yes<div>
-          <div className="font-display text-3xl">{qs.yes_count || 0}<div>
-          <div className="text-xs text-slate2">{total ? Math.round(((qs.yes_count || 0) / total) * 100) : 0}%<div>
-        <div>
+          <div className="text-xs text-slate2">Yes</div>
+          <div className="font-display text-3xl">{qs.yes_count || 0}</div>
+          <div className="text-xs text-slate2">{total ? Math.round(((qs.yes_count || 0) / total) * 100) : 0}%</div>
+        </div>
         <div className="bg-app-bg rounded-lg p-4">
-          <div className="text-xs text-slate2">No<div>
-          <div className="font-display text-3xl">{qs.no_count || 0}<div>
-          <div className="text-xs text-slate2">{total ? Math.round(((qs.no_count || 0) / total) * 100) : 0}%<div>
-        <div>
-      <div>
+          <div className="text-xs text-slate2">No</div>
+          <div className="font-display text-3xl">{qs.no_count || 0}</div>
+          <div className="text-xs text-slate2">{total ? Math.round(((qs.no_count || 0) / total) * 100) : 0}%</div>
+        </div>
+      </div>
     );
   }
   if (qs.distribution) {
     const max = Math.max(1, ...Object.values<number>(qs.distribution));
     return (
       <div>
-        <div className="text-sm text-slate2 mb-3">Average: <span className="text-ink font-semibold">{qs.average ?? "—"}<span><div>
+        <div className="text-sm text-slate2 mb-3">Average: <span className="text-ink font-semibold">{qs.average ?? "—"}</span></div>
         <div className="flex items-end gap-2 h-28">
           {Object.entries<number>(qs.distribution).map(([k, v]) => (
             <div key={k} className="flex-1 flex flex-col items-center gap-1">
@@ -311,25 +311,25 @@ function StatRenderer({ qs }: { qs: any }) {
                   animate={{ height: `${(v / max) * 100}%` }}
                   className="w-full bg-ink rounded-t-md min-h-[2px]"
                 />
-              <div>
-              <span className="text-xs text-slate2">{k}<span>
-            <div>
+              </div>
+              <span className="text-xs text-slate2">{k}</span>
+            </div>
           ))}
-        <div>
-      <div>
+        </div>
+      </div>
     );
   }
   if (qs.average != null) {
-    return <div className="text-sm text-slate2">Average: <span className="text-ink font-semibold">{qs.average}<span><div>;
+    return <div className="text-sm text-slate2">Average: <span className="text-ink font-semibold">{qs.average}</span></div>;
   }
   if (qs.text_answers) {
     return (
       <div className="space-y-1.5 max-h-40 overflow-y-auto">
-        {qs.text_answers.length === 0 && <div className="text-slate2 text-sm italic">No answers yet.<div>}
+        {qs.text_answers.length === 0 && <div className="text-slate2 text-sm italic">No answers yet.</div>}
         {qs.text_answers.map((a: string, i: number) => (
-          <div key={i} className="text-sm bg-app-bg rounded px-3 py-2 border border-line">{a}<div>
+          <div key={i} className="text-sm bg-app-bg rounded px-3 py-2 border border-line">{a}</div>
         ))}
-      <div>
+      </div>
     );
   }
   return null;
