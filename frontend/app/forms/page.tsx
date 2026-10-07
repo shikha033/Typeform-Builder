@@ -176,7 +176,7 @@ export default function DashboardPage() {
             </button>
           ))}
           <div className="mt-auto p-3 rounded-2xl text-sm" style={{ background: "linear-gradient(135deg,#f6ffd6,#f1e2f7)" }}>
-            <p className="font-medium text-ink mb-1">Typeform</p>
+            <p className="font-medium text-ink mb-1">Typeform Builder</p>
             <p className="text-slate2 text-xs leading-snug">Build forms people actually enjoy filling out.</p>
           </div>
         </aside>
