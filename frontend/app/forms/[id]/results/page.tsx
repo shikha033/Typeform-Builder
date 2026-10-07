@@ -72,7 +72,7 @@ export default function ResultsPage() {
         <span className="hidden sm:inline">Forms</span>
       </Link>
 
-      <span className="text-mute"></span>
+      <span className="text-mute">/</span>
 
       <div className="flex-1 min-w-0">
         <h1 className="text-[15px] font-medium truncate">{form.title}</h1>
