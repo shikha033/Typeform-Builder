@@ -1,0 +1,361 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Typeform's product UI is set in a neo-grotesque sans; serif is reserved for marketing/hero */
+  --font-display: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-hero: 'Instrument Serif', 'Signifier', 'Times New Roman', serif;
+
+  /* Typeform palette (sampled from reference screenshots) */
+  --tf-ink: #2a222b;               /* Typeform plum-black: text + primary buttons */
+  --tf-ink-soft: #3d3340;
+  --tf-plum: #2a222b;              /* dark marketing / login-art background */
+  --tf-plum-card: #2f2532;
+  --tf-app-bg: #ffffff;            /* app frame */
+  --tf-canvas: #f7f7f8;            /* rounded workspace canvas */
+  --tf-canvas-2: #efeff1;          /* secondary buttons on canvas */
+  --tf-paper: #ffffff;
+  --tf-line: #e7e5e9;
+  --tf-line-soft: #f1f0f2;
+  --tf-slate: #615b64;
+  --tf-mute: #9d98a1;
+  --tf-purple: #a45bb8;            /* Typeform AI purple */
+  --tf-purple-dim: #c58fd4;
+  --tf-purple-soft: #f1e2f7;
+  --tf-purple-mist: #faf3fd;
+  --tf-pink: #d946a3;
+}
+
+html, body {
+  background: var(--tf-app-bg);
+  color: var(--tf-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.005em;
+  font-size: 15px;
+}
+
+/* Scrollbar — subtle */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d6d3d9; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #b4b0b8; }
+
+*:focus-visible { outline: 2px solid var(--tf-purple); outline-offset: 2px; border-radius: 4px; }
+
+/* ================================
+   Buttons
+   ================================ */
+.tf-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px;
+  background: var(--tf-ink);
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600; font-size: 0.9rem;
+  letter-spacing: -0.005em;
+  border: 1px solid transparent;
+  transition: transform .12s ease, background .2s ease, box-shadow .2s ease;
+}
+.tf-btn:hover { background: var(--tf-ink-soft); }
+.tf-btn:active { transform: translateY(1px); }
+.tf-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.tf-btn-outline {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 19px;
+  background: #fff;
+  color: var(--tf-ink);
+  border: 1px solid var(--tf-ink);
+  border-radius: 12px;
+  font-weight: 500; font-size: 0.9rem;
+  transition: background .2s ease, color .2s ease;
+}
+.tf-btn-outline:hover { background: var(--tf-ink); color: #fff; }
+
+.tf-btn-ghost {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 12px;
+  background: transparent; color: var(--tf-ink);
+  border-radius: 8px; font-weight: 500; font-size: 0.875rem;
+  transition: background .18s ease;
+}
+.tf-btn-ghost:hover { background: rgba(42,34,43,0.06); }
+
+/* Purple pill (used for secondary accent actions) */
+.tf-btn-accent {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px;
+  background: var(--tf-purple-soft);
+  color: var(--tf-purple);
+  border-radius: 999px;
+  font-weight: 500; font-size: 0.85rem;
+  border: 1px solid transparent;
+  transition: all .18s ease;
+}
+.tf-btn-accent:hover {
+  background: var(--tf-purple);
+  color: #fff;
+}
+
+/* ================================
+   Inputs — big typographic
+   ================================ */
+.tf-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(14,14,14,0.14);
+  padding: 10px 0;
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--tf-ink);
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+  transition: border-color .2s ease;
+}
+.tf-input::placeholder { color: rgba(14,14,14,0.24); }
+.tf-input:focus { outline: none; border-bottom-color: var(--tf-purple); }
+
+.tf-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(14,14,14,0.14);
+  padding: 10px 0;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--tf-ink);
+  font-family: var(--font-display);
+  resize: none;
+  min-height: 90px;
+  transition: border-color .2s ease;
+}
+.tf-textarea:focus { outline: none; border-bottom-color: var(--tf-purple); }
+
+/* Choice option */
+.tf-option {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%; padding: 14px 18px;
+  background: var(--tf-purple-mist);
+  border: 1.5px solid var(--tf-purple-soft);
+  border-radius: 10px;
+  font-size: 1.05rem; font-weight: 500;
+  color: var(--tf-ink); text-align: left;
+  transition: all .18s ease;
+  cursor: pointer;
+}
+.tf-option:hover {
+  background: var(--tf-purple-soft);
+  border-color: var(--tf-purple-dim);
+}
+.tf-option[data-selected="true"] {
+  background: var(--tf-ink);
+  color: #fff;
+  border-color: var(--tf-ink);
+}
+.tf-option .keyhint {
+  width: 28px; height: 28px; display:flex; align-items:center; justify-content:center;
+  border-radius: 5px;
+  border: 1.5px solid rgba(14,14,14,0.22);
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--tf-ink);
+  background: #fff;
+}
+.tf-option[data-selected="true"] .keyhint {
+  border-color: rgba(255,255,255,0.5);
+  background: transparent;
+  color: #fff;
+}
+
+/* ================================
+   Cards
+   ================================ */
+.tf-card {
+  background: var(--tf-paper);
+  border: 1px solid var(--tf-line);
+  border-radius: 14px;
+  transition: all .2s ease;
+}
+.tf-card:hover {
+  border-color: var(--tf-purple-dim);
+  box-shadow: 0 20px 44px -24px rgba(164,91,184,0.25);
+  transform: translateY(-2px);
+}
+
+/* Selected-row with soft purple halo */
+.tf-selected {
+  border-color: var(--tf-purple) !important;
+  background: var(--tf-paper);
+  box-shadow: 0 0 0 3px var(--tf-purple-soft), 0 8px 20px -12px rgba(164,91,184,0.3);
+}
+
+/* ================================
+   Progress bar
+   ================================ */
+.tf-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px;
+  background: rgba(14,14,14,0.07); z-index: 50;
+}
+.tf-progress-fill {
+  height: 100%; background: var(--tf-ink);
+  transition: width .4s cubic-bezier(.4,0,.2,1);
+}
+
+/* ================================
+   Fonts & utilities
+   ================================ */
+.font-display { font-family: var(--font-display); letter-spacing: -0.02em; }
+.font-sans { font-family: var(--font-sans); }
+.drag-handle { cursor: grab; }
+.drag-handle:active { cursor: grabbing; }
+
+/* Chips */
+.tf-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 9px; border-radius: 999px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.01em;
+}
+.tf-chip-live { background: var(--tf-ink); color: #fff; }
+.tf-chip-draft { background: #ececea; color: var(--tf-slate); }
+.tf-chip-accent { background: var(--tf-purple-soft); color: var(--tf-purple); }
+
+/* Purple halo for feature areas */
+.purple-glow {
+  position: relative;
+}
+.purple-glow::before {
+  content: ""; position: absolute; inset: -2px;
+  border-radius: inherit; pointer-events: none;
+  background: radial-gradient(70% 70% at 50% 0%, rgba(164,91,184,0.18), transparent 65%);
+  opacity: 0; transition: opacity .3s ease;
+  z-index: 0;
+}
+.purple-glow:hover::before { opacity: 1; }
+.purple-glow > * { position: relative; z-index: 1; }
+
+/* Big ambient purple glow (hero area) */
+.ambient-purple {
+  position: absolute; pointer-events: none;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(164,91,184,0.22), transparent 70%);
+  filter: blur(30px);
+}
+
+/* ================================
+   Themed public form
+   ================================ */
+.themed .tf-input,
+.themed .tf-textarea {
+  color: var(--tf-fg, #0e0e0e);
+  border-bottom-color: color-mix(in srgb, var(--tf-fg, #0e0e0e) 18%, transparent);
+  font-family: var(--tf-font);
+}
+.themed .tf-input::placeholder,
+.themed .tf-textarea::placeholder {
+  color: color-mix(in srgb, var(--tf-fg, #0e0e0e) 32%, transparent);
+}
+.themed .tf-input:focus,
+.themed .tf-textarea:focus { border-bottom-color: var(--tf-accent, var(--tf-fg, #0e0e0e)); }
+
+.themed .tf-btn-primary {
+  background: var(--tf-btn-bg, #0e0e0e);
+  color: var(--tf-btn-fg, #fff);
+}
+.themed .tf-btn-primary:hover { filter: brightness(0.92); }
+
+.themed .tf-option {
+  background: color-mix(in srgb, var(--tf-accent, #a45bb8) 7%, transparent);
+  border-color: color-mix(in srgb, var(--tf-accent, #a45bb8) 32%, transparent);
+  color: var(--tf-fg, #0e0e0e);
+  font-family: var(--tf-font);
+}
+.themed .tf-option:hover {
+  background: color-mix(in srgb, var(--tf-accent, #a45bb8) 14%, transparent);
+  border-color: var(--tf-accent, #a45bb8);
+}
+.themed .tf-option[data-selected="true"] {
+  background: var(--tf-accent, #a45bb8);
+  border-color: var(--tf-accent, #a45bb8);
+  color: #fff;
+}
+
+.themed .tf-progress { background: color-mix(in srgb, var(--tf-fg, #0e0e0e) 10%, transparent); }
+.themed .tf-progress-fill { background: var(--tf-accent, var(--tf-fg, #0e0e0e)); }
+
+
+/* ================================
+   Typeform app shell (new)
+   ================================ */
+.tf-frame { background: #fff; min-height: 100vh; padding: 0 14px 14px; display: flex; flex-direction: column; }
+.tf-canvas { background: var(--tf-canvas); border-radius: 20px; flex: 1; }
+
+/* secondary button that sits on the grey canvas ("Start from scratch") */
+.tf-btn-canvas {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 16px 28px; background: var(--tf-canvas-2); color: var(--tf-slate);
+  border-radius: 14px; font-weight: 500; font-size: 0.95rem;
+  transition: background .18s ease, color .18s ease;
+}
+.tf-btn-canvas:hover { background: #e7e6e9; color: var(--tf-ink); }
+
+/* AI prompt box: white input, purple 1px border, soft lilac halo */
+.tf-ai-box {
+  background: #fff; border: 1px solid var(--tf-purple); border-radius: 10px;
+  box-shadow: 0 0 0 6px #f6ebfa, 0 0 0 7px #e9d8f0;
+}
+.tf-ai-box:focus-within { box-shadow: 0 0 0 6px #f1def8, 0 0 0 7px #dcbfe8; }
+
+/* Avatar bubble (lavender with initials) */
+.tf-avatar {
+  width: 38px; height: 38px; border-radius: 999px; background: #ecd3f6; color: var(--tf-ink);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 500;
+}
+
+/* Auth (login) screen */
+.tf-auth-input {
+  width: 100%; height: 54px; padding: 0 16px; background: #f7f7f8;
+  border: 1px solid #e6e4e8; border-radius: 12px; font-size: 1rem; color: var(--tf-ink);
+}
+.tf-auth-input:focus { outline: none; border-color: var(--tf-ink); background: #fff; }
+.tf-auth-social {
+  width: 100%; height: 54px; display: flex; align-items: center; justify-content: center; gap: 12px;
+  background: #fcfcfc; border: 1px solid #e6e4e8; border-radius: 12px; color: var(--tf-slate);
+  font-weight: 500; font-size: 1rem; transition: background .15s ease;
+}
+.tf-auth-social:hover { background: #fff; }
+.tf-auth-social.is-focused { border: 2px solid var(--tf-ink); }
+.tf-auth-primary {
+  width: 100%; height: 54px; border-radius: 12px; color: #fff; font-weight: 600; font-size: 1rem;
+  background: linear-gradient(180deg, #43364a, #3a2f40);
+}
+.tf-auth-primary:hover { filter: brightness(1.08); }
+.tf-auth-art {
+  background: var(--tf-plum); color: #fff; border-radius: 20px; position: relative; overflow: hidden;
+}
+.tf-glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.14); border-radius: 18px; backdrop-filter: blur(6px);
+}
+.tf-new-pill {
+  display: inline-flex; align-items: center; padding: 2px 12px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; letter-spacing: .04em; color: #fff;
+  background: #a45bb8; box-shadow: 0 0 14px rgba(164,91,184,0.55);
+}
+.font-hero { font-family: var(--font-hero); letter-spacing: -0.02em; }
+
+/* Colourful canvas: soft lilac / pink / lime glow like Typeform's AI screens */
+.tf-canvas-color {
+  background:
+    radial-gradient(60% 40% at 15% 0%, rgba(217,245,107,0.35), transparent 70%),
+    radial-gradient(55% 45% at 90% 5%, rgba(213,139,240,0.35), transparent 70%),
+    radial-gradient(50% 40% at 60% 100%, rgba(255,160,190,0.25), transparent 70%),
+    var(--tf-canvas);
+}
+.tf-card { box-shadow: 0 1px 2px rgba(42,34,43,.06), 0 8px 24px -12px rgba(42,34,43,.18); border: 1px solid var(--tf-line); border-radius: 18px; background:#fff; }
