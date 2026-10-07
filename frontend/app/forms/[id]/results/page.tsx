@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { ChevronLeft, Users, TrendingUp, Download, Globe } from "lucide-react";
+import { Users, TrendingUp, Download, Globe } from "lucide-react";
 import { toast } from "sonner";
 import { api } from "@/lib/api";
 import { Form, FormStats, ResponseSummary, ResponseRecord } from "@/lib/types";
@@ -58,43 +58,42 @@ export default function ResultsPage() {
     );
   }
 
-  const questionsById = Object.fromEntries(form.questions.map((q) => [q.id, q]));
-
   return (
-  <div className="min-h-screen tf-canvas-color">
-    <header className="h-[60px] bg-paper px-5 flex items-center gap-3">
-      <Link
-        href="/forms"
-        className="flex items-center gap-2 text-slate2 hover:text-ink text-[15px]"
-        data-testid="back-to-dashboard"
-      >
-        <TypeformLogo size={18} className="text-ink" />
-        <span className="hidden sm:inline">Forms</span>
-      </Link>
+    <div className="min-h-screen tf-canvas-color">
+      <header className="h-[60px] bg-paper px-5 flex items-center gap-3">
+        <Link
+          href="/forms"
+          className="flex items-center gap-2 text-slate2 hover:text-ink text-[15px]"
+          data-testid="back-to-dashboard"
+        >
+          <TypeformLogo size={18} className="text-ink" />
+          <span className="hidden sm:inline">Forms</span>
+        </Link>
 
-      <span className="text-mute">/</span>
+        <span className="text-mute">/</span>
 
-      <div className="flex-1 min-w-0">
-        <h1 className="text-[15px] font-medium truncate">{form.title}</h1>
-      </div>
+        <div className="flex-1 min-w-0">
+          <h1 className="text-[15px] font-medium truncate">{form.title}</h1>
+        </div>
 
-      <Link
-        href={`/forms/${form.id}/edit`}
-        className="tf-btn-ghost text-sm"
-        data-testid="edit-link"
-      >
-        Edit form
-      </Link>
+        <Link
+          href={`/forms/${form.id}/edit`}
+          className="tf-btn-ghost text-sm"
+          data-testid="edit-link"
+        >
+          Edit form
+        </Link>
 
-      <a
-        href={api.csvUrl(form.id)}
-        className="tf-btn-accent text-sm"
-        data-testid="export-csv-btn"
-        download
-      >
-        <Download size={14} /> Export CSV
-      <a>
-    </header>
+        <a
+          href={api.csvUrl(form.id)}
+          className="tf-btn-accent text-sm"
+          data-testid="export-csv-btn"
+          download
+        >
+          <Download size={14} /> Export CSV
+        </a>
+      </header>
+
       <div className="max-w-6xl mx-auto px-6 py-10 relative">
         <div className="ambient-purple w-[500px] h-[220px] -top-10 right-20" />
 
@@ -138,7 +137,8 @@ export default function ResultsPage() {
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <div className="text-[10px] uppercase tracking-wider text-slate2 font-semibold">
-                    {QUESTION_TYPE_LABEL[qs.question_type as keyof typeof QUESTION_TYPE_LABEL] || qs.question_type}
+                      {QUESTION_TYPE_LABEL[qs.question_type as keyof typeof QUESTION_TYPE_LABEL] || qs.question_type}
+                    </div>
                     <h3 className="font-display text-lg">{qs.question_title || "Untitled"}</h3>
                   </div>
                   <span className="text-xs text-slate2">{qs.response_count} responses</span>
