@@ -1,4 +1,3 @@
-// Shared TypeScript types mirroring backend schemas
 
 export type QuestionType =
   | "short_text"

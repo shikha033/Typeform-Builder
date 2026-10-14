@@ -1,5 +1,3 @@
-// API client — uses NEXT_PUBLIC_BACKEND_URL env var
-
 const BASE =
   process.env.NEXT_PUBLIC_BACKEND_URL ||
   (typeof window !== "undefined" ? window.location.origin : "");

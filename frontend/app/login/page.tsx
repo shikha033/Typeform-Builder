@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { toast } from "sonner";
 import { TypeformLogo } from "@/components/Logo";
 
-// Auth is mocked (the app assumes a default logged-in creator), but the screen mirrors Typeform's login.
+// Auth is mocked (the app assumes a default logged-in creator)
 const SLIDES = [
   { kicker: "Manage your audience", title: "Enrich and segment contacts automatically" },
   { kicker: "Collect responses", title: "Ask one question at a time and get more answers" },

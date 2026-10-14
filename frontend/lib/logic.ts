@@ -1,4 +1,3 @@
-// Logic jump evaluator — pure function so builder preview + public form share logic
 import { Question, LogicJump } from "./types";
 
 export function compareValues(op: LogicJump["operator"], actual: any, expected: any): boolean {

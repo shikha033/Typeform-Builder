@@ -68,7 +68,7 @@ export default function DashboardPage() {
     }
   };
 
-  // "Type or paste your form questions": every non-empty line becomes a question.
+
   const handleCreateFromPrompt = async () => {
     const lines = prompt.split("\n").map((l) => l.replace(/^\s*(\d+[.)]|[-*•])\s*/, "").trim()).filter(Boolean);
     if (!lines.length) return;
@@ -130,7 +130,7 @@ export default function DashboardPage() {
 
   return (
     <div className="tf-frame">
-      {/* Top bar: breadcrumb left, help + avatar right (matches Typeform app chrome) */}
+     
       <header className="h-[62px] shrink-0 flex items-center justify-between px-3">
         <div className="flex items-center gap-5">
         <Link href="/" className="text-ink" aria-label="Home"><TypeformLogo size={20} wordmark /></Link>
@@ -274,7 +274,7 @@ export default function DashboardPage() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-                  className="tf-card relative group overflow-hidden hover:-translate-y-0.5 transition-transform"
+                  
                   data-testid={`form-card-${f.id}`}
                 >
                   <div
@@ -315,7 +315,7 @@ export default function DashboardPage() {
                       {menuOpenId === f.id && (
                         <>
                           <div className="fixed inset-0 z-10" onClick={() => setMenuOpenId(null)} />
-                          <div className="absolute right-0 mt-1 w-48 bg-paper border border-line rounded-xl shadow-lift z-20 py-1 text-sm overflow-hidden">
+                          <div className="absolute right-0 top-full mt-1 w-48 bg-paper border border-line rounded-xl shadow-lift z-50 py-1 text-sm">
                             <MenuBtn testid={`rename-${f.id}`} icon={<Edit3 size={14} />} onClick={() => { setRenameId(f.id); setRenameValue(f.title); setMenuOpenId(null); }}>
                               Rename
                             </MenuBtn>
@@ -363,7 +363,7 @@ export default function DashboardPage() {
               ))}
             </div>
           )}
-        </section>
+        </section>className="tf-card relative group overflow-visible hover:-translate-y-0.5 transition-transform"
       </main>
       </div>
 

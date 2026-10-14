@@ -1,4 +1,4 @@
-"""FastAPI entrypoint."""
+
 import logging
 import os
 from pathlib import Path
@@ -12,9 +12,9 @@ from starlette.requests import Request
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / ".env")
 
-from app.database import init_db  # noqa: E402
-from app.routers import forms as forms_router  # noqa: E402
-from app.routers import public as public_router  # noqa: E402
+from app.database import init_db  
+from app.routers import forms as forms_router  
+from app.routers import public as public_router  
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s - %(message)s")
 logger = logging.getLogger(__name__)

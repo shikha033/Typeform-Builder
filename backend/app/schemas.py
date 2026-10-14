@@ -1,4 +1,4 @@
-"""Pydantic schemas for API I/O."""
+
 from datetime import datetime
 from typing import List, Optional, Literal, Union
 from pydantic import BaseModel, Field, EmailStr, ConfigDict
