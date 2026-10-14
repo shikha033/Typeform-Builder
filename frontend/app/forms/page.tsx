@@ -274,7 +274,7 @@ export default function DashboardPage() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-                  
+                  className={`tf-card relative group overflow-visible hover:-translate-y-0.5 transition-transform ${menuOpenId === f.id ? "z-40" : ""}`}
                   data-testid={`form-card-${f.id}`}
                 >
                   <div
@@ -363,7 +363,7 @@ export default function DashboardPage() {
               ))}
             </div>
           )}
-        </section>className="tf-card relative group overflow-visible hover:-translate-y-0.5 transition-transform"
+        </section>
       </main>
       </div>
 
