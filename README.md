@@ -161,4 +161,5 @@ On first start the backend creates the database and seeds two published forms, *
 - Integrations, team collaboration, and the Themes / Integrations / Team sidebar entries are "Coming soon" placeholders.
 - File-upload and payment question types are not implemented.
 - The dashboard "paste your questions" box turns each line into a question; it does not use an AI model.
+- Sample forms and responses are included for demonstration and testing purposes.
 
