@@ -47,7 +47,8 @@ def replace_questions(db: Session, form: models.Form, questions: List[schemas.Qu
     """Upsert questions on a form.
 
     Preserves existing question/option IDs (and therefore historical answers) when
-    the client sends back the same ID. Any questions/options missing from the
+    the client sends back the same ID. New questions/options keep the ID the client
+    generated, so logic-jump rules that point to them never go stale. Any questions/options missing from the
     payload are deleted (which cascades to their answers).
     """
     existing_q = {q.id: q for q in form.questions}
@@ -59,7 +60,9 @@ def replace_questions(db: Session, form: models.Form, questions: List[schemas.Qu
 
         q = existing_q.get(qin.id) if qin.id else None
         if q is None:
-            q = models.Question(form_id=form.id)
+            # Keep the client's id (logic rules point to it), unless it already belongs to another row
+            keep_id = qin.id if qin.id and db.get(models.Question, qin.id) is None else None
+            q = models.Question(form_id=form.id, **({"id": keep_id} if keep_id else {}))
             db.add(q)
         # Update fields
         q.type = qin.type
@@ -79,10 +82,14 @@ def replace_questions(db: Session, form: models.Form, questions: List[schemas.Qu
             for oi, opt in enumerate(qin.options or []):
                 existing_opt = existing_opts.get(opt.id) if opt.id else None
                 if existing_opt is None:
+                    keep_opt_id = (
+                        opt.id if opt.id and db.get(models.QuestionOption, opt.id) is None else None
+                    )
                     new_opt = models.QuestionOption(
                         question_id=q.id,
                         label=opt.label,
                         order_index=oi,
+                        **({"id": keep_opt_id} if keep_opt_id else {}),
                     )
                     db.add(new_opt)
                     db.flush()
